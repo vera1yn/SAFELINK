@@ -1,10 +1,8 @@
-
 import os
 import streamlit as st
 import datetime
 
 st.set_page_config(page_title="SAFE LINK", page_icon=":heart:", layout="wide")
-
 
 # --------------------------- Custom Style ---------------------------------
 st.markdown("""
@@ -110,16 +108,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --------------------------- Logo Header ---------------------------
-
-# Check if the image exists
-image_path = "assets/8442983a-8c2b-4de5-a763-e2365e3aad3f.png"
 col1, col2, col3 = st.columns([1, 2, 1])
-
 with col2:
-    if os.path.exists(image_path):
-        st.image(image_path, use_container_width=True)
-    else:
-        st.warning("Logo tidak ditemukan. Pastikan file 'assets/8442983a-8c2b-4de5-a763-e2365e3aad3f.png' tersedia.")
+    st.image("assets/8442983a-8c2b-4de5-a763-e2365e3aad3f.png", use_container_width=True)
 
 
 # --------------------------- Navigation ---------------------------
