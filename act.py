@@ -89,7 +89,7 @@ st.markdown("""
 # --------------------------- Logo Header ---------------------------
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
-    st.image("assets/8442983a-8c2b-4de5-a763-e2365e3aad3f.png", use_container_width=True)
+    st.image("8442983a-8c2b-4de5-a763-e2365e3aad3f.png", use_container_width=True)
 
 # --------------------------- Navigation ---------------------------
 tab_home, tab_lapor, tab_status, tab_kasus, tab_faq = st.tabs(["🏠 HOME", "📝 LAPOR", "📈 STATUS", "🛡️ KASUS SEKITAR", "❓ FAQ"])
