@@ -109,7 +109,8 @@ st.markdown("""
 # --------------------------- Logo Header ---------------------------
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
-    st.image("8442983a-8c2b-4de5-a763-e2365e3aad3f.png", use_container_width=True)
+    st.image("assets/8442983a-8c2b-4de5-a763-e2365e3aad3f.png", use_container_width=True)
+
 
 # --------------------------- Navigation ---------------------------
 tab_home, tab_lapor, tab_status, tab_kasus, tab_faq = st.tabs(["🏠 HOME", "📝 LAPOR", "📈 STATUS", "🛡️ KASUS SEKITAR", "❓ FAQ"])
@@ -201,10 +202,10 @@ with tab_kasus:
     st.header("Kasus di Sekitar Anda ‼")
 
     kasus_list = [
-        {"judul": "Silet tas di rute aeon the breeze", "waktu": "2 hari lalu", "keterangan" : "hati-hati ya guyss, barusan aku naik bsd link..."},
-        {"judul": "Orang genit di rute Greenwhich sektor 1.3", "waktu": "5 hari lalu", "keterangan" : "be on the look out guys..."},
-        {"judul": "Koko-koko satu geng duduk di kursi prioritas", "waktu": "6 hari lalu", "keterangan" : "ga abis pikir..."},
-        {"judul": "Dicari earbuds hilang", "waktu": "1 minggu lalu", "keterangan" : "urgent! plis banget tolong guys..."}
+        {"judul": "Silet tas di rute aeon the breeze", "waktu": "2 hari lalu", "keterangan" : "hati-hati ya guyss, barusan aku naik bsd link yang rute ke the breeze dari aeon ada bapak-bapak pake baju merah, topi item naik dari halte cbd timur 2 udah sus banget soalnya pake masker juga, terus bener aja pas ada kakak-kakak naik dari halte navapark bapak-bapak itu langsung ngedeketin kakaknyaa dan aneh banget... read more"},
+        {"judul": "Orang genit di rute Greenwhich sektor 1.3", "waktu": "5 hari lalu", "keterangan" : "be on the look out guys, ada mas-mas genit nyelip-nyelipin henpon di bawah rok orang"},
+        {"judul": "Koko-koko satu geng duduk di kursi prioritas", "waktu": "6 hari lalu", "keterangan" : "ga abis pikir, ada segerombolan koko-koko kisaran sma duduk di kursi priortas padahal posisi bus lagi rame dan ada ibu hamil"},
+        {"judul": "Dicari earbuds hilang", "waktu": "1 minggu lalu", "keterangan" : "urgent! plis banget tolong guys, tadi sore aku naik bsd link rute intermoda-depark dari breeze sampe casa de parco, ga ngeh nomor busnya tapi kyknya ketinggalan di bus dehh, buat yang nemu earbuds plis banget contact aku di ... read more"}
     ] 
 
     search_query = st.text_input("🔎 Cari Kasus Berdasarkan Judul", "")
@@ -213,7 +214,7 @@ with tab_kasus:
 
     if filtered_kasus:
         for kasus in filtered_kasus:
-            st.markdown(f"### 🛡️ {kasus['judul']}")
+            st.markdown(f"### 🔺 {kasus['judul']}")
             st.caption(f"🕒 {kasus['waktu']}")
             st.write(f"{kasus['keterangan']}")
 
