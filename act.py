@@ -181,10 +181,10 @@ with tab_kasus:
     st.header("Kasus di Sekitar Anda ‼")
 
     kasus_list = [
-        {"judul": "Silet tas di rute aeon the breeze", "waktu": "2 hari lalu", "keterangan" : "hati-hati ya guys..."},
-        {"judul": "Orang genit di rute Greenwhich sektor 1.3", "waktu": "5 hari lalu", "keterangan" : "be on the look out guys..."},
-        {"judul": "Koko-koko satu geng duduk di kursi prioritas", "waktu": "6 hari lalu", "keterangan" : "ga abis pikir..."},
-        {"judul": "Dicari earbuds hilang", "waktu": "1 minggu lalu", "keterangan" : "urgent! plis banget..."}
+        {"judul": "Silet tas di rute aeon the breeze", "waktu": "2 hari lalu", "keterangan" : "hati-hati ya guyss, barusan aku naik bsd link yang rute ke the breeze dari aeon ada bapak-bapak pake baju merah, topi item naik dari halte cbd timur 2 udah sus banget soalnya pake masker juga, terus bener aja pas ada kakak-kakak naik dari halte navapark bapak-bapak itu langsung ngedeketin kakaknyaa dan aneh banget... read more"},
+        {"judul": "Orang genit di rute Greenwhich sektor 1.3", "waktu": "5 hari lalu", "keterangan" : "be on the look out guys, ada mas-mas genit nyelip-nyelipin henpon di bawah rok orang"},
+        {"judul": "Koko-koko satu geng duduk di kursi prioritas", "waktu": "6 hari lalu", "keterangan" : "ga abis pikir, ada segerombolan koko-koko kisaran sma duduk di kursi priortas padahal posisi bus lagi rame dan ada ibu hamil"},
+        {"judul": "Dicari earbuds hilang", "waktu": "1 minggu lalu", "keterangan" : "urgent! plis banget tolong guys, tadi sore aku naik bsd link rute intermoda-depark dari breeze sampe casa de parco, ga ngeh nomor busnya tapi kyknya ketinggalan di bus dehh, buat yang nemu earbuds plis banget contact aku di ... read more"}
     ]
 
     search_query = st.text_input("🔎 Cari Kasus Berdasarkan Judul", "")
