@@ -128,20 +128,21 @@ with tab_lapor:
         submit = st.form_submit_button("Kirim Laporan")
 
         if submit:
-            laporan = {
-                "nama": nama if nama else "Anonim",
-                "no_hp": no_hp,
-                "email": email,
-                "tanggal": str(tanggal),
-                "waktu": str(waktu),
-                "lokasi": lokasi,
-                "jenis": jenis,
-                "kronologi": kronologi,
-                "bukti": bukti.name if bukti else None,
-                "status": "Diterima"
-            }
-            st.session_state.reports.append(laporan)
-            st.success("✅ Laporan berhasil dikirim!")
+            with st.spinner("Mengirim laporan... Mohon tunggu 🙏"):
+                laporan = {
+                    "nama": nama if nama else "Anonim",
+                    "no_hp": no_hp,
+                    "email": email,
+                    "tanggal": str(tanggal),
+                    "waktu": str(waktu),
+                    "lokasi": lokasi,
+                    "jenis": jenis,
+                    "kronologi": kronologi,
+                    "bukti": bukti.name if bukti else None,
+                    "status": "Diterima"
+                }
+                st.session_state.reports.append(laporan)
+                st.success("✅ Laporan berhasil dikirim!")
 
 # --------------------------- STATUS ---------------------------
 with tab_status:
@@ -160,10 +161,10 @@ with tab_status:
                 st.write(f"Status Saat Ini: **{report['status']}**")
 
                 progress_map = {
-                    "Diterima": (0.25, "Tahap 1/4: Diterima"),
-                    "Diproses": (0.5, "Tahap 2/4: Diproses"),
-                    "Dalam Investigasi": (0.75, "Tahap 3/4: Dalam Investigasi"),
-                    "Selesai": (1.0, "Tahap 4/4: Selesai")
+                    "Diterima": (0.25, "Tahap 1/4: Diterima\nMasih ada 3 tahap lagi: Diproses → Dalam Investigasi → Selesai"),
+                    "Diproses": (0.5, "Tahap 2/4: Diproses\nMasih ada 2 tahap lagi: Dalam Investigasi → Selesai"),
+                    "Dalam Investigasi": (0.75, "Tahap 3/4: Dalam Investigasi\nMasih ada 1 tahap lagi: Selesai"),
+                    "Selesai": (1.0, "Tahap 4/4: Selesai\nLaporan telah selesai ditangani.")
                 }
                 progress, label = progress_map.get(report["status"], (0.1, "Belum Diketahui"))
                 st.progress(progress, text=label)
@@ -180,28 +181,28 @@ with tab_kasus:
     st.header("Kasus di Sekitar Anda ‼")
 
     kasus_list = [
-        {"judul": "Silet tas di rute aeon the breeze", "waktu": "2 hari lalu", "keterangan" : "Hati-hati ya guys..."},
-        {"judul": "Orang genit di rute Greenwhich sektor 1.3", "waktu": "5 hari lalu", "keterangan" : "Be on the lookout..."},
-        {"judul": "Koko-koko satu geng duduk di kursi prioritas", "waktu": "6 hari lalu", "keterangan" : "Ga abis pikir..."},
-        {"judul": "Dicari earbuds hilang", "waktu": "1 minggu lalu", "keterangan" : "Urgent! Plis banget..."}
+        {"judul": "Silet tas di rute aeon the breeze", "waktu": "2 hari lalu", "keterangan" : "hati-hati ya guys..."},
+        {"judul": "Orang genit di rute Greenwhich sektor 1.3", "waktu": "5 hari lalu", "keterangan" : "be on the look out guys..."},
+        {"judul": "Koko-koko satu geng duduk di kursi prioritas", "waktu": "6 hari lalu", "keterangan" : "ga abis pikir..."},
+        {"judul": "Dicari earbuds hilang", "waktu": "1 minggu lalu", "keterangan" : "urgent! plis banget..."}
     ]
 
     search_query = st.text_input("🔎 Cari Kasus Berdasarkan Judul", "")
 
     filtered_kasus = [kasus for kasus in kasus_list if search_query.lower() in kasus['judul'].lower()]
 
-    progress_status_map = {
-        "Silet tas di rute aeon the breeze": ("Dalam Investigasi", 0.75),
-        "Orang genit di rute Greenwhich sektor 1.3": ("Diproses", 0.5),
-        "Koko-koko satu geng duduk di kursi prioritas": ("Diterima", 0.25),
-        "Dicari earbuds hilang": ("Selesai", 1.0)
-    }
-
     if filtered_kasus:
         for kasus in filtered_kasus:
             st.markdown(f"### 🔺 {kasus['judul']}")
             st.caption(f"🕒 {kasus['waktu']}")
             st.write(f"{kasus['keterangan']}")
+
+            progress_status_map = {
+                "Silet tas di rute aeon the breeze": ("Dalam Investigasi", 0.75),
+                "Orang genit di rute Greenwhich sektor 1.3": ("Diproses", 0.5),
+                "Koko-koko satu geng duduk di kursi prioritas": ("Diterima", 0.25),
+                "Dicari earbuds hilang": ("Selesai", 1.0)
+            }
 
             status, progress = progress_status_map.get(kasus['judul'], ("Diterima", 0.25))
             st.write(f"**Status Penanganan:** {status}")
@@ -210,8 +211,8 @@ with tab_kasus:
             st.subheader(f"💬 Komentar untuk {kasus['judul']}")
             form_key = f"form_komentar_{kasus['judul']}"
             with st.form(form_key, clear_on_submit=True):
-                nama_komentar = st.text_input(f"Nama Anda ({kasus['judul']})")
-                komentar = st.text_area(f"Komentar atau Dukungan Anda ({kasus['judul']})")
+                nama_komentar = st.text_input(f"Nama Anda ({kasus['judul']})", key=f"nama_{kasus['judul']}")
+                komentar = st.text_area(f"Komentar atau Dukungan Anda ({kasus['judul']})", key=f"komentar_{kasus['judul']}")
                 kirim_komentar = st.form_submit_button("Kirim Komentar")
 
                 if kirim_komentar and komentar:
@@ -238,17 +239,17 @@ with tab_kasus:
 with tab_faq:
     st.header("Frequently Asked Questions (FAQ)")
     with st.expander("Apakah ada nomor customer service yang bisa saya hubungi?"):
-        st.write("Hubungi marketing office kami di +6221-5315-9000.")
+        st.write("Untuk saat ini belum ada nomor untuk customer service BSD Link...")
     with st.expander("Berapa estimasi waktu tunggu tindak lanjut laporan?"):
-        st.write("Kasus akan mulai diproses dalam 5 hari kerja.")
-    with st.expander("Apakah saya boleh melaporkan tindak kejahatan kepada penumpang lain?"):
-        st.write("Ya, silakan laporkan dan sertakan bukti.")
+        st.write("Penyelesaian kasus akan bervariasi...")
+    with st.expander("Apakah saya boleh melaporkan tindak kejahatan yang dilakukan kepada penumpang lain?"):
+        st.write("Ya, silakan dan silakan sertakan bukti kejadian juga.")
     with st.expander("Apakah saya bisa melapor secara anonim?"):
-        st.write("Ya, nama bisa anonim tapi HP/Email wajib valid.")
+        st.write("Ya, Anda dapat menyamarkan nama Anda...")
     with st.expander("Apa yang terjadi setelah saya melapor?"):
-        st.write("Laporan Anda diverifikasi, diproses, lalu ditindaklanjuti.")
+        st.write("Laporan Anda akan diverifikasi, diproses, dan ditindaklanjuti oleh tim terkait.")
     with st.expander("Apakah saya perlu mengunggah bukti?"):
-        st.write("Sangat disarankan untuk melampirkan bukti.")
+        st.write("Ya, pengunggahan foto/video sangat disarankan sebagai bukti...")
     with st.expander("Apa yang harus saya lakukan apabila saya difitnah?"):
-        st.write("Hubungi CS di 0812-3456-7890.")
+        st.write("Silakan hubungi CS kami untuk pengaduan di nomor berikut...")
 
